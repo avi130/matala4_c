@@ -90,11 +90,8 @@ void insert(trieNode *root, char *word) {
             }
             current = current->children[letter];
         }
-
-        if (current->isLeaf = true) {
-            current->numOfWords++;
-        }
-        current->isLeaf = true;
+        current->numOfWords++;
+    current->isLeaf = true;
 
 }
 
