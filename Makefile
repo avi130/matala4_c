@@ -6,8 +6,8 @@ FLAGS = -Wall -g
 # $< - the first name in the dependencies list
 # $^ - the right side of :
 
-all: trie
-trie: main.o trie.o
+all: frequency
+frequency: main.o trie.o
 	$(CC) $(FLAGS) -o $@ $^
 trie.o: trie.c trie.h
 	$(CC) $(FLAGS) -fPIC -c $<
@@ -17,4 +17,4 @@ main.o: main.c trie.h
 .PHONY: clean all
 
 clean:
-	rm -f *.o trie
+	rm -f *.o frequency
