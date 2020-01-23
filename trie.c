@@ -63,7 +63,9 @@ typedef struct trieNode
 
 trieNode *addNode(void)
 {
+
     trieNode *newNode=NULL;
+
     newNode=(trieNode *)malloc(sizeof(trieNode));
     if(newNode){
        newNode->isLeaf=false;
@@ -71,6 +73,7 @@ trieNode *addNode(void)
             newNode->children[i]=NULL;
             newNode->numOfWords=0;
         }
+
 
     }
     return newNode;
@@ -82,7 +85,7 @@ void insert(trieNode *root, char *word) {
     toLegal(word);
     int letter;
     trieNode *current = root;
-    int len = strlen(word);
+    int len =(int) strlen(word);
     for (int i = 0; i < len; ++i) {
         letter = toInteger(word[i]);
             if (!current->children[letter]) {
@@ -98,26 +101,24 @@ void insert(trieNode *root, char *word) {
 
 void Lex(trieNode* root, char ans[], int indexNum, bool toReverse){
 
-    trieNode *current=root;
-    if(current->numOfWords!=0)
-    {
-        ans[indexNum]='\0' ;
+    trieNode *current = root;
+
+    if (current->numOfWords != 0 ) {
+        ans[indexNum] = '\0';
         printf("%s\t %d\n", ans, root->numOfWords);
 
     }
 
     int index;
-    for (int i = 0; i <childrenNum ; ++i) {
-        if(toReverse)
-        {
-            index=childrenNum-1-i;
-        } else{
-            index=i;
+    for (int i = 0; i < childrenNum; ++i) {
+        if (toReverse) {
+            index = childrenNum - 1 - i;
+        } else {
+            index = i;
         }
-        if(current->children[index]!=NULL)
-        {
-            ans[indexNum]=index+'a';
-            Lex(current->children[index],ans,indexNum+1,toReverse);
+        if (current->children[index] != NULL ) {
+            ans[indexNum] = index + 'a';
+            Lex(current->children[index], ans, indexNum + 1, toReverse);
         }
 
     }
@@ -126,13 +127,7 @@ void Lex(trieNode* root, char ans[], int indexNum, bool toReverse){
 void freeMemory(trieNode *root){
 
     trieNode *current=root;
- /*   if(current==NULL)
-    {
 
-        free(current);
-        return;
-    }
-    */
     if(current->isLeaf )
     {
         free(current);
@@ -149,9 +144,18 @@ void freeMemory(trieNode *root){
         {
             free(current);
         }
-
-
     }
-
-
 }
+
+/*
+void freeMemory(trieNode* root){
+    for (int i = 0; i < childrenNum; i++ ){
+        if(root -> children[i] != NULL){
+            freeMemory(root -> children[i]);
+        }
+    }
+    if (root != NULL){
+        free(root);
+    }
+}
+ */

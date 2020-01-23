@@ -6,7 +6,9 @@
 #define PROJECT4_TRIE_H
 #define childrenNum 26
 
+
 #include <stdbool.h>
+#include <bits/types/FILE.h>
 
 int toInteger(char x);
 
@@ -17,6 +19,7 @@ typedef struct trieNode
     struct trieNode *children[childrenNum];
     bool isLeaf;
     int numOfWords;
+
 }trieNode;
 
 
@@ -34,6 +37,7 @@ void toLittelChar( char *word);
 
 void freeMemory(trieNode *root);
 
+char *inputString(FILE* fp, size_t size);
 
 
 #endif //PROJECT4_TRIE_H
